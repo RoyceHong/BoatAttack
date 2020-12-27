@@ -44,3 +44,10 @@ MemoryCaptures
 Assets/BuildReports
 SerializedBuildInfo
 SwitchIL2CPP*
+*.dll
+*.exe
+*.asset
+*.assets
+*.resS
+*.map
+*.config

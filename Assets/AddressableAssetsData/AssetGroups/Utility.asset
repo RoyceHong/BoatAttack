@@ -17,24 +17,30 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: ae971df5c2b654af9a3670c7d1a6fc27
   m_SerializeEntries:
+  - m_GUID: 4823b5c430af647578af56a5d37f7276
+    m_Address: Assets/Objects/UI/prefabs/RaceStats_Player.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: 530da10d6c4d9442e9e8d5eeb77a25d8
     m_Address: camera
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_mainAssetType: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: 5b930c10a697b4d8c9c8084e03800523
     m_Address: checkpoint
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_mainAssetType: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: d4548d51034644d21971f134c82b6a9a
     m_Address: volume_manager
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_mainAssetType: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 46fc3d082b08c4dacacae72d7016c235, type: 2}
   m_SchemaSet:

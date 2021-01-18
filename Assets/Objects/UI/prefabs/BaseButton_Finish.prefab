@@ -137,6 +137,21 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8220169445217342336, guid: 4d4a28cdbf9c64075b5b6cd9779ceed1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8220169445217342336, guid: 4d4a28cdbf9c64075b5b6cd9779ceed1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8220169445217342336, guid: 4d4a28cdbf9c64075b5b6cd9779ceed1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8568024210662664693, guid: 4d4a28cdbf9c64075b5b6cd9779ceed1,
         type: 3}
       propertyPath: m_text
@@ -146,6 +161,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.characterCount
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8568024210662664693, guid: 4d4a28cdbf9c64075b5b6cd9779ceed1,
+        type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d4a28cdbf9c64075b5b6cd9779ceed1, type: 3}

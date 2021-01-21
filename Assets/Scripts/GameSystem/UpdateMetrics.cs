@@ -1,11 +1,20 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.SceneManagement;
+using BoatAttack.UI;
+using UnityEngine.Playables;
+using Random = System.Random;
 
 namespace BoatAttack
 {
-    public class UpdateMetrics : MonoBehaviour
+    public static class UpdateMetrics
     {
-        private static Queue<int> queue = new Queue<int>(initQueue());
+        private static Queue<int> queue;
 
         private static void Shuffle<T>(this IList<T> list, Random rng)
         {
@@ -22,23 +31,24 @@ namespace BoatAttack
 
         private static List<int> initQueue()
         {
-            List<int> list = new List<int>(17);
+            List<int> list = new List<int>();
             Random rng = new Random();
 
             for (int i = 0; i < 17; i++)
             {
-                list[i] = i;
+                list.Add(i);
             }
             list.Shuffle(rng);
 
             return list;
         }
 
-        private static int _fps = 60;
+        private static int _fps = 30;
         private static int _resScale = 80;
 
         public static void Init()
         {
+            queue = new Queue<int>(initQueue());
             SetDefault();
             Update();
         }
@@ -49,7 +59,7 @@ namespace BoatAttack
             _resScale = 80;
         }
 
-        public static void UpdateMetrics()
+        public static void ChangeAndUpdateMetrics()
         {
             ChangeMetrics();
             Update();

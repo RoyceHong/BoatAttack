@@ -186,6 +186,8 @@ namespace BoatAttack
         /// <returns></returns>
         private static IEnumerator BeginRace()
         {
+            UpdateMetrics.UpdateMetrics();
+
             var introCams = GameObject.FindWithTag("introCameras");
             introCams.TryGetComponent<PlayableDirector>(out var introDirector);
 

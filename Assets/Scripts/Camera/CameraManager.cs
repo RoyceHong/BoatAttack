@@ -19,7 +19,8 @@ namespace BoatAttack
         public CinemachineVirtualCamera _raceCamera;
         public CinemachineClearShot _replayShots;
         public Text _staticCamText;
-        private int _curStaticCam = 0;
+        private int _curStaticCam = 0; //commenting to test
+
 
         private void Start()
         {

@@ -71,6 +71,9 @@
 	</assembly>
 	<assembly fullname="Assembly-CSharp">
 		<type fullname="BoatAttack.AppSettings" preserve="nothing"/>
+		<type fullname="BoatAttack.Boat" preserve="nothing"/>
+		<type fullname="BoatAttack.BoatFoamGenerator" preserve="nothing"/>
+		<type fullname="BoatAttack.Engine" preserve="nothing"/>
 		<type fullname="BoatAttack.LodLightmaps" preserve="nothing"/>
 		<type fullname="BoatAttack.RaceManager" preserve="nothing"/>
 		<type fullname="BoatAttack.RandomHue" preserve="nothing"/>
@@ -78,6 +81,11 @@
 		<type fullname="BoatAttack.UI.ColorSelector" preserve="nothing"/>
 		<type fullname="BoatAttack.UI.EnumSelector" preserve="nothing"/>
 		<type fullname="BoatAttack.UI.MainMenuHelper" preserve="nothing"/>
+		<type fullname="BoatAttack.UI.PlayerMapMarker" preserve="nothing"/>
+		<type fullname="BoatAttack.UI.PlayerMarker" preserve="nothing"/>
+		<type fullname="BoatAttack.UI.RaceStatsPlayer" preserve="nothing"/>
+		<type fullname="BoatAttack.UI.RaceUI" preserve="nothing"/>
+		<type fullname="BoatAttack.WakeGenerator" preserve="nothing"/>
 		<type fullname="BoatAttack.WaypointGroup" preserve="nothing"/>
 		<type fullname="BoatAttack.WindsurferManager" preserve="nothing"/>
 		<type fullname="BuoyManager" preserve="nothing"/>
@@ -157,6 +165,7 @@
 	</assembly>
 	<assembly fullname="Unity.RenderPipelines.Universal.Runtime">
 		<type fullname="UnityEngine.Rendering.Universal.Bloom" preserve="nothing"/>
+		<type fullname="UnityEngine.Rendering.Universal.ChromaticAberration" preserve="nothing"/>
 		<type fullname="UnityEngine.Rendering.Universal.ColorAdjustments" preserve="nothing"/>
 		<type fullname="UnityEngine.Rendering.Universal.DepthOfField" preserve="nothing"/>
 		<type fullname="UnityEngine.Rendering.Universal.ForwardRendererData" preserve="nothing"/>

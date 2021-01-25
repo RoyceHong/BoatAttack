@@ -22,7 +22,7 @@ namespace BoatAttack.UI
         {
             _boat = boat;
             playerName.text = _boat.name;
-            boatType.text = "TODO"; // TODO - need to implement
+            boatType.text = "N/A"; // TODO - need to implement
         }
 
         private void Update()

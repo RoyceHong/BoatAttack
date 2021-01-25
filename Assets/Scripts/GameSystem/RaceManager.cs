@@ -97,7 +97,7 @@ namespace BoatAttack
             Instance = this;
         }
 
-        private void Reset()
+        public void Reset()
         {
             RaceStarted = false;
             RaceData.boats.Clear();
@@ -144,7 +144,7 @@ namespace BoatAttack
             RaceData = new Race {game = gameType,
                 boats = new List<BoatData>(),
                 boatCount = 4,
-                laps = 3,
+                laps = 1, // Changed from 3 to 1
                 type = RaceType.Race
             };
 
@@ -198,7 +198,7 @@ namespace BoatAttack
                 introCams.SetActive(false);
             }
 
-            yield return new WaitForSeconds(3f); // countdown 3..2..1..
+          //  yield return new WaitForSeconds(0f); // countdown 3..2..1.. // UPDATE: removed countdown bc not needed
             
             RaceStarted = true;
             raceStarted?.Invoke(RaceStarted);
@@ -206,6 +206,14 @@ namespace BoatAttack
             SceneManager.sceneLoaded -= Setup;
         }
 
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                Debug.Log("End Race");
+                EndRace();
+            }
+        }
         /// <summary>
         /// Triggered when the race has finished
         /// </summary>
@@ -219,6 +227,7 @@ namespace BoatAttack
                     break;
                 case GameType.Singleplayer:
                     SetupCamera(0, true);
+                    SetupRace();
                     break;
                 case GameType.LocalMultiplayer:
                     break;

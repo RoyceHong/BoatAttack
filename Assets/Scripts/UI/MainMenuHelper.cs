@@ -15,6 +15,12 @@ namespace BoatAttack.UI
         public ColorSelector boatPrimaryColorSelector;
         public ColorSelector boatTrimColorSelector;
 
+        private void Start()
+        {
+            SetupSingleplayerGame();
+            StartRace();
+        }
+
         private void OnEnable()
         {
             // level stuff

@@ -138,20 +138,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8220169445217342336, guid: 4d4a28cdbf9c64075b5b6cd9779ceed1,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8220169445217342336, guid: 4d4a28cdbf9c64075b5b6cd9779ceed1,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8220169445217342336, guid: 4d4a28cdbf9c64075b5b6cd9779ceed1,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 8803882710196166548, guid: 56de8e58d1a974ab880e61b104d7ef98,
+      objectReference: {fileID: 0}
+    - target: {fileID: 8220169445217342336, guid: 4d4a28cdbf9c64075b5b6cd9779ceed1,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8220169445217342336, guid: 4d4a28cdbf9c64075b5b6cd9779ceed1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8220169445217342336, guid: 4d4a28cdbf9c64075b5b6cd9779ceed1,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -160,23 +169,53 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 8220169445217342336, guid: 4d4a28cdbf9c64075b5b6cd9779ceed1,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetupSingleplayerGame
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: StartRace
       objectReference: {fileID: 0}
     - target: {fileID: 8220169445217342336, guid: 4d4a28cdbf9c64075b5b6cd9779ceed1,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: StartRace
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8220169445217342336, guid: 4d4a28cdbf9c64075b5b6cd9779ceed1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8220169445217342336, guid: 4d4a28cdbf9c64075b5b6cd9779ceed1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8568024210662664693, guid: 4d4a28cdbf9c64075b5b6cd9779ceed1,
         type: 3}
       propertyPath: m_text
-      value: Retry
+      value: Survey
       objectReference: {fileID: 0}
     - target: {fileID: 8568024210662664693, guid: 4d4a28cdbf9c64075b5b6cd9779ceed1,
         type: 3}
       propertyPath: m_textInfo.characterCount
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8568024210662664693, guid: 4d4a28cdbf9c64075b5b6cd9779ceed1,
+        type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 8568024210662664693, guid: 4d4a28cdbf9c64075b5b6cd9779ceed1,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8568024210662664693, guid: 4d4a28cdbf9c64075b5b6cd9779ceed1,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 8568024210662664693, guid: 4d4a28cdbf9c64075b5b6cd9779ceed1,
+        type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d4a28cdbf9c64075b5b6cd9779ceed1, type: 3}

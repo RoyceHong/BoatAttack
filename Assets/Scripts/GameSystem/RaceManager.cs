@@ -204,6 +204,16 @@ namespace BoatAttack
             raceStarted?.Invoke(RaceStarted);
             
             SceneManager.sceneLoaded -= Setup;
+
+            //////////////////////////////////////////////
+            // Where to insert resolution and fps changes
+            QualitySettings.vSyncCount = 0;
+            Application.targetFrameRate = 15;
+
+            yield return new WaitForSeconds(3f); // countdown 3..2..1..
+
+            Application.targetFrameRate = 120;
+            /////////////////////////////////////////
         }
 
         private void Update()
@@ -285,7 +295,7 @@ namespace BoatAttack
             Debug.LogWarning("Unloading Race");
             if(Instance.raceUiPrefab != null && Instance.raceUiPrefab.IsValid())
             {
-                Instance.raceUiPrefab.ReleaseAsset();
+               Instance.raceUiPrefab.ReleaseAsset();
             }
 
             Instance.Reset();

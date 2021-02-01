@@ -97,7 +97,7 @@ namespace BoatAttack
             Instance = this;
         }
 
-        private void Reset()
+        public void Reset()
         {
             RaceStarted = false;
             RaceData.boats.Clear();
@@ -198,7 +198,7 @@ namespace BoatAttack
                 introCams.SetActive(false);
             }
 
-            yield return new WaitForSeconds(3f); // countdown 3..2..1..
+            //yield return new WaitForSeconds(3f); // countdown 3..2..1..
             
             RaceStarted = true;
             raceStarted?.Invoke(RaceStarted);
@@ -259,7 +259,7 @@ namespace BoatAttack
                     _boatTimes[i] = boat.LapPercentage + boat.LapCount;
                 }
             }
-            if(RaceStarted && finished == 0)
+            if(finished == 0)
                 EndRace();
 
             var mySortedList = _boatTimes.OrderBy(d => d.Value).ToList();

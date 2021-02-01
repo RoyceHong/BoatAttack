@@ -22,6 +22,7 @@ namespace BoatAttack.UI
         public GameObject gameplayUi;
         public GameObject raceStat;
         public GameObject matchEnd;
+        public GameObject survey;
 
         [Header("Assets")]
         public AssetReference playerMarker;
@@ -36,6 +37,7 @@ namespace BoatAttack.UI
         private float _smoothSpeedVel;
         private AppSettings.SpeedFormat _speedFormat;
         private RaceStatsPlayer[] _raceStats;
+        //public PostGameSurvey postGameSurvey;
 
         private void OnEnable()
         {
@@ -44,6 +46,7 @@ namespace BoatAttack.UI
 
         public void Setup(int player)
         {
+            survey.SetActive(false);
             _playerIndex = player;
             _boat = RaceManager.RaceData.boats[_playerIndex].Boat;
             _totalLaps = RaceManager.GetLapCount();
@@ -94,6 +97,14 @@ namespace BoatAttack.UI
             matchEnd.SetActive(true);
             SetGameStats(true);
             SetGameplayUi(false);
+        }
+
+        public void SurveyStart()
+        {
+            survey.SetActive(true);
+            matchEnd.SetActive(false);
+            SetGameStats(false);
+            //postGameSurvey.show();
         }
 
         private IEnumerator CreateGameStats()

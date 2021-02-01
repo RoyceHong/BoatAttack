@@ -186,6 +186,8 @@ namespace BoatAttack
         /// <returns></returns>
         private static IEnumerator BeginRace()
         {
+            UpdateMetrics.ChangeAndUpdateMetrics();
+
             var introCams = GameObject.FindWithTag("introCameras");
             introCams.TryGetComponent<PlayableDirector>(out var introDirector);
 
@@ -215,6 +217,10 @@ namespace BoatAttack
             Application.targetFrameRate = 120;
             /////////////////////////////////////////
         }
+
+        #region Metrics
+
+        #endregion
 
         /// <summary>
         /// Triggered when the race has finished

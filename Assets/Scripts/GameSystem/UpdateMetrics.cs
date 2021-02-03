@@ -61,6 +61,7 @@ namespace BoatAttack
 
         public static void ChangeAndUpdateMetrics()
         {
+            Debug.Log("ChangeAndUpdateMetrics called");
             ChangeMetrics();
             Update();
         }
@@ -140,6 +141,8 @@ namespace BoatAttack
 
         private static void Update()
         {
+            Debug.Log("This lap's fps: " + _fps);
+            Debug.Log("This lap's resScale: " + _resScale);
             Application.targetFrameRate = _fps;
             Screen.SetResolution(16 * _resScale, 9 * _resScale, true);
         }

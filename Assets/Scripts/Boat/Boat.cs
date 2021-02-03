@@ -149,7 +149,7 @@ namespace BoatAttack
                 var nextCp = _cpList[nextCpIndex];
 
                 if (index != nextCp) return;
-                Debug.Log($"Boat {name} passed checkpoint");
+                //Debug.Log($"Boat {name} passed checkpoint");
                 ++_wpCount;
 
                 if (index != 0) return;

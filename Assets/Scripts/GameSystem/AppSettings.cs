@@ -65,7 +65,11 @@ namespace BoatAttack
         private void Initialize()
         {
             Instance = this;
-            Application.targetFrameRate = 300;
+            QualitySettings.vSyncCount = 0;
+            UpdateMetrics.Init();
+
+            // Application.targetFrameRate = 300;
+            // Screen.SetResolution(1920, 1080, true); // default set
             MainCamera = Camera.main;
             if(DefaultVolume.Instance == null)
                 StartCoroutine(LoadPrefab<GameObject>(volumeManager, new AsyncOperationHandle()));

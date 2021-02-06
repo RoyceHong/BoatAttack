@@ -26,6 +26,8 @@ namespace BoatAttack
         [NonSerialized] public int LapCount;
         [NonSerialized] public bool MatchComplete;
         private int _wpCount = -1;
+        private int _cpCount = 5;
+        private int[] _cpList = new int[] { 0, 2, 5, 9, 12 };
         private WaypointGroup.Waypoint _lastCheckpoint;
         private WaypointGroup.Waypoint _nextCheckpoint;
 
@@ -141,22 +143,25 @@ namespace BoatAttack
 
         private void EnteredWaypoint(int index, bool checkpoint)
         {
-            var count = WaypointGroup.Instance.WPs.Count;
-            var nextWp = (int) Mathf.Repeat(_wpCount + 1, count);
+            if (index == 0 || checkpoint)
+            {
+                var nextCpIndex = (int)Mathf.Repeat(_wpCount + 1, _cpCount);
+                var nextCp = _cpList[nextCpIndex];
 
-            if (nextWp != index) return;
-            _wpCount = nextWp;
+                if (index != nextCp) return;
+                //Debug.Log($"Boat {name} passed checkpoint");
+                ++_wpCount;
 
-            if (index != 0) return;
-            LapCount++;
-            SplitTimes.Add(RaceManager.RaceTime);
+                if (index != 0) return;
+                LapCount++;
+                SplitTimes.Add(RaceManager.RaceTime);
 
-            if (LapCount <= RaceManager.GetLapCount()) return;
-            
-            Debug.Log($"Boat {name} finished {RaceUI.OrdinalNumber(Place)} with time:{RaceUI.FormatRaceTime(SplitTimes.Last())}");
-            RaceManager.BoatFinished(_playerIndex);
-            MatchComplete = true;
+                if (LapCount <= RaceManager.GetLapCount()) return;
 
+                Debug.Log($"Boat {name} finished {RaceUI.OrdinalNumber(Place)} with time:{RaceUI.FormatRaceTime(SplitTimes.Last())}");
+                RaceManager.BoatFinished(_playerIndex);
+                MatchComplete = true;
+            }
         }
 
         [ContextMenu("Randomize")]

@@ -97,7 +97,7 @@ namespace BoatAttack
             Instance = this;
         }
 
-        private void Reset()
+        public void Reset()
         {
             RaceStarted = false;
             RaceData.boats.Clear();
@@ -186,6 +186,9 @@ namespace BoatAttack
         /// <returns></returns>
         private static IEnumerator BeginRace()
         {
+            Debug.Log("Begin Race called");
+            UpdateMetrics.ChangeAndUpdateMetrics();
+
             var introCams = GameObject.FindWithTag("introCameras");
             introCams.TryGetComponent<PlayableDirector>(out var introDirector);
 
@@ -198,7 +201,7 @@ namespace BoatAttack
                 introCams.SetActive(false);
             }
 
-            yield return new WaitForSeconds(3f); // countdown 3..2..1..
+            //yield return new WaitForSeconds(3f); // countdown 3..2..1..
             
             RaceStarted = true;
             raceStarted?.Invoke(RaceStarted);
@@ -215,6 +218,10 @@ namespace BoatAttack
             Application.targetFrameRate = 120;
             /////////////////////////////////////////
         }
+
+        #region Metrics
+
+        #endregion
 
         /// <summary>
         /// Triggered when the race has finished
@@ -259,7 +266,7 @@ namespace BoatAttack
                     _boatTimes[i] = boat.LapPercentage + boat.LapCount;
                 }
             }
-            if(RaceStarted && finished == 0)
+            if(finished == 0)
                 EndRace();
 
             var mySortedList = _boatTimes.OrderBy(d => d.Value).ToList();

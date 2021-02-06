@@ -311,6 +311,7 @@ namespace BoatAttack
                 boatLoading.Result.name = boat.boatName; // set the name of the boat
                 boatLoading.Result.TryGetComponent<Boat>(out var boatController);
                 boat.SetController(boatLoading.Result, boatController);
+                // Boat Creation
                 boatController.Setup(i + 1, boat.human, boat.livery);
                 Instance._boatTimes.Add(i, 0f);
             }

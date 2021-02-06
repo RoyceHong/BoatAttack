@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
 
 namespace BoatAttack
 {
@@ -14,7 +15,12 @@ namespace BoatAttack
         private float _steering;
 
         private bool _paused;
-        
+
+        private Queue<float> _throttle_queue = new Queue<float>();
+        private Queue<float> _steering_queue = new Queue<float>();
+
+        int q_len = 10;
+
         private void Awake()
         {
             _controls = new InputControls();
@@ -69,8 +75,20 @@ namespace BoatAttack
 
         void FixedUpdate()
         {
-            engine.Accelerate(_throttle);
-            engine.Turn(_steering);
+            _throttle_queue.Enqueue(_throttle);
+            if (_throttle_queue.Count >= q_len)
+            {
+                float late_throttle = _throttle_queue.Dequeue();
+                engine.Accelerate(late_throttle);
+            }
+
+            _steering_queue.Enqueue(_steering);
+            if (_steering_queue.Count >= q_len)
+            {
+                float late_steering = _steering_queue.Dequeue();
+                engine.Turn(late_steering);
+            }
+           
         }
     }
 }

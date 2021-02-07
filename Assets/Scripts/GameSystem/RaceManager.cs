@@ -208,15 +208,9 @@ namespace BoatAttack
             
             SceneManager.sceneLoaded -= Setup;
 
-            //////////////////////////////////////////////
-            // Where to insert resolution and fps changes
-            QualitySettings.vSyncCount = 0;
-            Application.targetFrameRate = 15;
-
             yield return new WaitForSeconds(3f); // countdown 3..2..1..
 
-            Application.targetFrameRate = 120;
-            /////////////////////////////////////////
+
         }
 
         #region Metrics

@@ -19,7 +19,7 @@ namespace BoatAttack
         private Queue<float> _throttle_queue = new Queue<float>();
         private Queue<float> _steering_queue = new Queue<float>();
 
-        int q_len = 10;
+        public static int q_len = 0;
 
         private void Awake()
         {
@@ -46,6 +46,11 @@ namespace BoatAttack
         private void OnDisable()
         {
             _controls.BoatControls.Disable();
+        }
+
+        public static void setLatency(int frames)
+        {
+            q_len = frames;
         }
 
         private void ResetBoat(InputAction.CallbackContext context)

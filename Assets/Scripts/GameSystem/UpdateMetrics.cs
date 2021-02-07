@@ -45,10 +45,12 @@ namespace BoatAttack
 
         private static int _fps = 30;
         private static int _resScale = 80;
+        private static int _latency = 0;
 
         public static void Init()
         {
             queue = new Queue<int>(initQueue());
+            QualitySettings.vSyncCount = 0;
             SetDefault();
             Update();
         }
@@ -57,6 +59,8 @@ namespace BoatAttack
         {
             _fps = 30;
             _resScale = 80;
+            _latency = 0;
+            
         }
 
         public static void ChangeAndUpdateMetrics()
@@ -79,44 +83,44 @@ namespace BoatAttack
                 
                 // fps
                 case 1:
-                    _fps = 15; _resScale = 80;
+                    SetDefault(); _fps = 15; 
                     break;
                 case 2:
-                    _fps = 20; _resScale = 80;
+                    SetDefault(); _fps = 20; 
                     break;
                 case 3:
-                    _fps = 60; _resScale = 80;
+                    SetDefault(); _fps = 60; 
                     break;
                 case 4:
-                    _fps = 90; _resScale = 80;
+                    SetDefault(); _fps = 90;
                     break;
 
                 // resolution
                 case 5:
-                    _fps = 30; _resScale = 40;
+                    SetDefault(); _resScale = 40;
                     break;
                 case 6:
-                    _fps = 30; _resScale = 50;
+                    SetDefault(); _resScale = 50;
                     break;
                 case 7:
-                    _fps = 30; _resScale = 60;
+                    SetDefault(); _resScale = 60;
                     break;
                 case 8:
-                    _fps = 30; _resScale = 120;
+                    SetDefault(); _resScale = 120;
                     break;
 
                 // TODO: latency
                 case 9:
-                    SetDefault();
+                    SetDefault(); _latency = 0;
                     break;
                 case 10:
-                    SetDefault();
+                    SetDefault(); _latency = 5;
                     break;
                 case 11:
-                    SetDefault();
+                    SetDefault(); _latency = 15;
                     break;
                 case 12:
-                    SetDefault();
+                    SetDefault(); _latency = 20;
                     break;
 
                 // TODO: stability
@@ -143,8 +147,11 @@ namespace BoatAttack
         {
             Debug.Log("This lap's fps: " + _fps);
             Debug.Log("This lap's resScale: " + _resScale);
+            Debug.Log("This lap's latency: " + _latency);
             Application.targetFrameRate = _fps;
             Screen.SetResolution(16 * _resScale, 9 * _resScale, true);
+            HumanController.setLatency(_latency);
+
         }
 
         public static int getFPS()

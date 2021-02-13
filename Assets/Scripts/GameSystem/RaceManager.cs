@@ -207,15 +207,7 @@ namespace BoatAttack
             raceStarted?.Invoke(RaceStarted);
             
             SceneManager.sceneLoaded -= Setup;
-
-            yield return new WaitForSeconds(3f); // countdown 3..2..1..
-
-
         }
-
-        #region Metrics
-
-        #endregion
 
         /// <summary>
         /// Triggered when the race has finished

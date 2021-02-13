@@ -189,6 +189,11 @@ namespace BoatAttack
             return _resScale;
         }
 
+        public static int getLatency()
+        {
+            return _latency;
+        }
+
         public static int getFPSVar()
         {
             return _fpsVar;

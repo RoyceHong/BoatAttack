@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.IO;
+using System.Collections;
 
 namespace BoatAttack.UI
 {
@@ -29,8 +30,6 @@ namespace BoatAttack.UI
         GameObject panel;
         public String surveyData = "";
         Guid sessionUuid = System.Guid.NewGuid();
-        public StreamWriter writer;
-        UnityWebRequest wwwPostGame;
 
         // Use this for initialization
         void Start()
@@ -150,58 +149,35 @@ namespace BoatAttack.UI
 
         public void finishAction()
         {
-            // Dummy values
-            int resolutionMultiple = 80;
-            int q_len = 1;
-            int fps = 30;
-            int fps_var = 0;
-            int lapCount = 0;
+            surveyData += "}";
+            Debug.Log(surveyData);
 
-            String postData = "{\"surveyData\": " + surveyData + ", \"parameters\": {" + string.Format("\"lapNumber\": {4}, \"fps\": {0}, \"resolutionMultiple\": {1}, \"q_len\": {2}, \"fps_var\": {3}", fps, resolutionMultiple, q_len, fps_var, lapCount + 1) + "},";
+            int fps = UpdateMetrics.getFPS();
+            int resScale = UpdateMetrics.getResScale();
+            int latency = UpdateMetrics.getLatency();
+            int fps_var = UpdateMetrics.getFPSVar();
+            int lap = UpdateMetrics.getLapID();
+
+            String postData = "{\"surveyData\": " + surveyData + ", \"parameters\": {" + string.Format("\"lapNumber\": {4}, \"fps\": {0}, \"resolutionMultiple\": {1}, \"q_len\": {2}, \"fps_var\": {3}", fps, resScale, latency, fps_var, lap) + "},";
             postData += "\"systemInfo\": {" + string.Format("\"deviceType\": \"{0}\", \"deviceModel\": \"{1}\", \"deviceUniqueIdentifier\": \"{2}\", \"operatingSystem\": \"{3}\", \"processorType\": \"{4}\"", ("" + SystemInfo.deviceType).Replace("\"", "\\\""), ("" + SystemInfo.deviceModel).Replace("\"", "\\\""), ("" + SystemInfo.deviceUniqueIdentifier).Replace("\"", "\\\""), ("" + SystemInfo.operatingSystem).Replace("\"", "\\\""), ("" + SystemInfo.processorType).Replace("\"", "\\\"")) + "}, \"uuid\": \"" + sessionUuid + "\"}";
-            initLog();
-            writer.WriteLine(postData);
-            writer.Flush();
-            Debug.Log("ABOUT TO SEND SURVEY RESULTS TO SERVER");
+            Debug.Log(postData);
             if (surveyData.Length > 0)
             {
-                //UnityWebRequest www = UnityWebRequest.Put("https://seniordesign-295702.uc.r.appspot.com/raceGameResults", postData);
-                //www.SetRequestHeader("Accept", "application/json");
-                //www.SetRequestHeader("Content-Type", "application/json");
-                //www.SetRequestHeader("Access-Control-Allow-Origin", "*");
-                //www.Send();
-                //wwwPostGame = www;
+                UnityWebRequest www = UnityWebRequest.Put("https://seniordesign-295702.uc.r.appspot.com/boatGameResults", postData);
+                //UnityWebRequest www = UnityWebRequest.Put("http://localhost:5000/boatGameResults", postData);
+                www.SetRequestHeader("Accept", "application/json");
+                www.SetRequestHeader("Content-Type", "application/json");
+                www.SetRequestHeader("Access-Control-Allow-Origin", "*");
+                www.SendWebRequest();
             }
 
             GameObject.Find("SurveyNext").GetComponentInChildren<Text>().text = "Next";
             qi = 0;
             doneSurvey = true;
-            surveyData += "}";
-            Debug.Log(surveyData);
-
+            
             GameObject root = transform.root.gameObject;
             RaceUI raceui = (RaceUI)root.GetComponent(typeof(RaceUI));
             raceui.FinishMatch();
-        }
-
-        public void initLog()
-        {
-            if (writer == null)
-            {
-                try
-                {
-                    String settingsLogPath = Application.persistentDataPath + "/settingsLog.txt";
-                    // Debug.Log("logging path: " + settingsLogPath);
-                    writer = new StreamWriter(settingsLogPath, true);
-                    writer.WriteLine("".PadLeft(80, '='));
-                    writer.WriteLine("Starting a new Log");
-                    writer.Flush();
-                }
-                catch (Exception exc)
-                {
-                    // Debug.Log(exc.StackTrace);
-                }
-            }
         }
 
         // Update is called once per frame

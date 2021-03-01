@@ -2,7 +2,9 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 using System.IO;
+using System.Collections;
 
 namespace BoatAttack.UI
 {
@@ -27,6 +29,8 @@ namespace BoatAttack.UI
         ToggleGroup toggle_group;
         GameObject panel;
         public String surveyData = "";
+        Guid sessionUuid = System.Guid.NewGuid();
+
         // Use this for initialization
         void Start()
         {
@@ -145,13 +149,32 @@ namespace BoatAttack.UI
 
         public void finishAction()
         {
-            Debug.Log("Send survey results to server here!!!");
-            GameObject.Find("SurveyNext").GetComponentInChildren<Text>().text = "Next";
-            qi = 0;
-            doneSurvey = true;
             surveyData += "}";
             Debug.Log(surveyData);
 
+            int fps = UpdateMetrics.getFPS();
+            int resScale = UpdateMetrics.getResScale();
+            int latency = UpdateMetrics.getLatency();
+            int fps_var = UpdateMetrics.getFPSVar();
+            int lap = UpdateMetrics.getLapID();
+
+            String postData = "{\"surveyData\": " + surveyData + ", \"parameters\": {" + string.Format("\"lapNumber\": {4}, \"fps\": {0}, \"resolutionMultiple\": {1}, \"q_len\": {2}, \"fps_var\": {3}", fps, resScale, latency, fps_var, lap) + "},";
+            postData += "\"systemInfo\": {" + string.Format("\"deviceType\": \"{0}\", \"deviceModel\": \"{1}\", \"deviceUniqueIdentifier\": \"{2}\", \"operatingSystem\": \"{3}\", \"processorType\": \"{4}\"", ("" + SystemInfo.deviceType).Replace("\"", "\\\""), ("" + SystemInfo.deviceModel).Replace("\"", "\\\""), ("" + SystemInfo.deviceUniqueIdentifier).Replace("\"", "\\\""), ("" + SystemInfo.operatingSystem).Replace("\"", "\\\""), ("" + SystemInfo.processorType).Replace("\"", "\\\"")) + "}, \"uuid\": \"" + sessionUuid + "\"}";
+            Debug.Log(postData);
+            if (surveyData.Length > 0)
+            {
+                UnityWebRequest www = UnityWebRequest.Put("https://seniordesign-295702.uc.r.appspot.com/boatGameResults", postData);
+                //UnityWebRequest www = UnityWebRequest.Put("http://localhost:5000/boatGameResults", postData);
+                www.SetRequestHeader("Accept", "application/json");
+                www.SetRequestHeader("Content-Type", "application/json");
+                www.SetRequestHeader("Access-Control-Allow-Origin", "*");
+                www.SendWebRequest();
+            }
+
+            GameObject.Find("SurveyNext").GetComponentInChildren<Text>().text = "Next";
+            qi = 0;
+            doneSurvey = true;
+            
             GameObject root = transform.root.gameObject;
             RaceUI raceui = (RaceUI)root.GetComponent(typeof(RaceUI));
             raceui.FinishMatch();

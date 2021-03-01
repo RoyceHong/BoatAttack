@@ -15,8 +15,9 @@ namespace BoatAttack
     public static class UpdateMetrics
     {
         private static Queue<int> queue;
+        private static Random rng = new Random();
 
-        private static void Shuffle<T>(this IList<T> list, Random rng)
+        private static void Shuffle<T>(this IList<T> list)
         {
             int n = list.Count;
             while(n > 1)
@@ -32,20 +33,39 @@ namespace BoatAttack
         private static List<int> initQueue()
         {
             List<int> list = new List<int>();
-            Random rng = new Random();
 
             for (int i = 0; i < 17; i++)
             {
                 list.Add(i);
             }
-            list.Shuffle(rng);
+            list.Shuffle();
 
             return list;
+        }
+
+        public static float GaussRandom(float mu, float sigma)
+        {
+            float u, v, S;
+            float min = mu - (3.0f * sigma);
+            float max = mu + (3.0f * sigma);
+
+            do
+            {
+                u = 2.0f * UnityEngine.Random.value - 1.0f;
+                v = 2.0f * UnityEngine.Random.value - 1.0f;
+                S = u * u + v * v;
+            } while(S >= 1.0f);
+
+            float std = u * Mathf.Sqrt(-2.0f * Mathf.Log(S));
+
+            return Mathf.Clamp(std * sigma + mu, min, max);
         }
 
         private static int _fps = 30;
         private static int _resScale = 80;
         private static int _latency = 0;
+        private static int _fpsVar = 0;
+        private static int _lapID = 0;
 
         public static void Init()
         {
@@ -60,7 +80,8 @@ namespace BoatAttack
             _fps = 30;
             _resScale = 80;
             _latency = 0;
-            
+            _fpsVar = 0;
+            _lapID = 0;
         }
 
         public static void ChangeAndUpdateMetrics()
@@ -72,9 +93,9 @@ namespace BoatAttack
 
         private static void ChangeMetrics()
         {
-            int caseSwitch = queue.Dequeue();
+            _lapID = (queue.Count > 0) ? queue.Dequeue() : 0;
 
-            switch(caseSwitch)
+            switch(_lapID)
             {
                 // control
                 case 0:
@@ -83,58 +104,57 @@ namespace BoatAttack
                 
                 // fps
                 case 1:
-                    SetDefault(); _fps = 15; 
+                    _fps = 15; _resScale = 80; _latency = 0; _fpsVar = 0; 
                     break;
                 case 2:
-                    SetDefault(); _fps = 20; 
+                    _fps = 20; _resScale = 80; _latency = 0; _fpsVar = 0; 
                     break;
                 case 3:
-                    SetDefault(); _fps = 60; 
+                    _fps = 60; _resScale = 80; _latency = 0; _fpsVar = 0; 
                     break;
                 case 4:
-                    SetDefault(); _fps = 90;
+                    _fps = 90; _resScale = 80; _latency = 0; _fpsVar = 0; 
                     break;
 
                 // resolution
                 case 5:
-                    SetDefault(); _resScale = 40;
+                    _fps = 30; _resScale = 40; _latency = 0; _fpsVar = 0;
                     break;
                 case 6:
-                    SetDefault(); _resScale = 50;
+                    _fps = 30; _resScale = 50; _latency = 0; _fpsVar = 0;
                     break;
                 case 7:
-                    SetDefault(); _resScale = 60;
+                    _fps = 30; _resScale = 60; _latency = 0; _fpsVar = 0; 
                     break;
                 case 8:
-                    SetDefault(); _resScale = 120;
+                    _fps = 30; _resScale = 120; _latency = 0; _fpsVar = 0; 
                     break;
 
-                // TODO: latency
+                // latency
                 case 9:
-                    SetDefault(); _latency = 0;
+                    _fps = 30; _resScale = 80; _latency = 0; _fpsVar = 0; 
                     break;
                 case 10:
-                    SetDefault(); _latency = 5;
+                    _fps = 30; _resScale = 80; _latency = 5; _fpsVar = 0;
                     break;
                 case 11:
-                    SetDefault(); _latency = 15;
+                    _fps = 30; _resScale = 80; _latency = 15; _fpsVar = 0;
                     break;
                 case 12:
-                    SetDefault(); _latency = 20;
+                    _fps = 30; _resScale = 80; _latency = 20; _fpsVar = 0;
                     break;
 
-                // TODO: stability
                 case 13:
-                    SetDefault();
+                    _fps = 30; _resScale = 80; _latency = 0; _fpsVar = 6; 
                     break;
                 case 14:
-                    SetDefault();
+                    _fps = 30; _resScale = 80; _latency = 0; _fpsVar = 10; 
                     break;
                 case 15:
-                    SetDefault();
+                    _fps = 30; _resScale = 80; _latency = 0; _fpsVar = 12; 
                     break;
                 case 16:
-                    SetDefault();
+                    _fps = 30; _resScale = 80; _latency = 0; _fpsVar = 15; 
                     break;
 
                 default:
@@ -154,6 +174,11 @@ namespace BoatAttack
 
         }
 
+        public static int getLapID()
+        {
+            return _lapID;
+        }
+
         public static int getFPS()
         {
             return _fps;
@@ -162,6 +187,16 @@ namespace BoatAttack
         public static int getResScale()
         {
             return _resScale;
+        }
+
+        public static int getLatency()
+        {
+            return _latency;
+        }
+
+        public static int getFPSVar()
+        {
+            return _fpsVar;
         }
     }
 }

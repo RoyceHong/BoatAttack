@@ -207,15 +207,7 @@ namespace BoatAttack
             raceStarted?.Invoke(RaceStarted);
             
             SceneManager.sceneLoaded -= Setup;
-
-            yield return new WaitForSeconds(3f); // countdown 3..2..1..
-
-
         }
-
-        #region Metrics
-
-        #endregion
 
         /// <summary>
         /// Triggered when the race has finished
@@ -242,6 +234,12 @@ namespace BoatAttack
             }
         }
         
+        private void FixedUpdate()
+        {
+            int randFPS = (int)UpdateMetrics.GaussRandom(UpdateMetrics.getFPS(), UpdateMetrics.getFPSVar());
+            Application.targetFrameRate = Math.Max(1, Math.Min(60, randFPS));
+        }
+
         private void LateUpdate()
         {
             if (!RaceStarted) return;

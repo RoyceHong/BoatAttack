@@ -12,13 +12,13 @@ namespace BoatAttack.UI
     {
         private String[] questions = {
             "How would you rate your satisfaction of the smoothness of the game? " +
-                "[1 - Very Unsatisfied; 5 - Very Satisfied]",
+                "\n1 - Very Unsatisfied    2 - Unsatisfied    3 - Neutral    4 - Satisfied    5 - Very Satisfied",
             "How would you rate your satisfaction of the graphics/visual appeal of the game? " +
-                "[1 - Very Unsatisfied; 5 - Very Satisfied]",
+                "\n1 - Very Unsatisfied    2 - Unsatisfied    3 - Neutral    4 - Satisfied    5 - Very Satisfied",
             "How would you rate your satisfaction of the responsiveness of the game? " +
-                "[1 - Very Unsatisfied; 5 - Very Satisfied]",
+                "\n1 - Very Unsatisfied    2 - Unsatisfied    3 - Neutral    4 - Satisfied    5 - Very Satisfied",
             "How would you rate your satisfaction of the overall experience of the game? " +
-                "[1 - Very Unsatisfied; 5 - Very Satisfied]"
+                "\n1 - Very Unsatisfied    2 - Unsatisfied    3 - Neutral    4 - Satisfied    5 - Very Satisfied"
         };
         int qi = 0;
         int prev_qi = -1;

@@ -154,10 +154,10 @@ namespace BoatAttack
                     _fps = 60; _resScale = 80; _latency = 15; _fpsVar = 15; 
                     break;
                 case 18:
-                    _fps = 60; _resScale = 40; _latency = 0; _fpsVar = 0; 
+                    _fps = 30; _resScale = 40; _latency = 0; _fpsVar = 0; 
                     break;
                 case 19:
-                    _fps = 60; _resScale = 120; _latency = 0; _fpsVar = 0; 
+                    _fps = 30; _resScale = 120; _latency = 0; _fpsVar = 0; 
                     break;
                 default:
                     SetDefault();

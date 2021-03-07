@@ -102,61 +102,63 @@ namespace BoatAttack
                     SetDefault();
                     break;
                 
-                // fps
                 case 1:
-                    _fps = 15; _resScale = 80; _latency = 0; _fpsVar = 0; 
+                    _fps = 30; _resScale = 80; _latency = 0; _fpsVar = 5; 
                     break;
                 case 2:
-                    _fps = 20; _resScale = 80; _latency = 0; _fpsVar = 0; 
-                    break;
-                case 3:
-                    _fps = 60; _resScale = 80; _latency = 0; _fpsVar = 0; 
-                    break;
-                case 4:
-                    _fps = 90; _resScale = 80; _latency = 0; _fpsVar = 0; 
-                    break;
-
-                // resolution
-                case 5:
-                    _fps = 30; _resScale = 40; _latency = 0; _fpsVar = 0;
-                    break;
-                case 6:
-                    _fps = 30; _resScale = 50; _latency = 0; _fpsVar = 0;
-                    break;
-                case 7:
-                    _fps = 30; _resScale = 60; _latency = 0; _fpsVar = 0; 
-                    break;
-                case 8:
-                    _fps = 30; _resScale = 120; _latency = 0; _fpsVar = 0; 
-                    break;
-
-                // latency
-                case 9:
-                    _fps = 30; _resScale = 80; _latency = 0; _fpsVar = 0; 
-                    break;
-                case 10:
-                    _fps = 30; _resScale = 80; _latency = 5; _fpsVar = 0;
-                    break;
-                case 11:
-                    _fps = 30; _resScale = 80; _latency = 15; _fpsVar = 0;
-                    break;
-                case 12:
-                    _fps = 30; _resScale = 80; _latency = 20; _fpsVar = 0;
-                    break;
-
-                case 13:
-                    _fps = 30; _resScale = 80; _latency = 0; _fpsVar = 6; 
-                    break;
-                case 14:
-                    _fps = 30; _resScale = 80; _latency = 0; _fpsVar = 10; 
-                    break;
-                case 15:
-                    _fps = 30; _resScale = 80; _latency = 0; _fpsVar = 12; 
-                    break;
-                case 16:
                     _fps = 30; _resScale = 80; _latency = 0; _fpsVar = 15; 
                     break;
-
+                case 3:
+                    _fps = 30; _resScale = 80; _latency = 5; _fpsVar = 0; 
+                    break;
+                case 4:
+                    _fps = 30; _resScale = 80; _latency = 5; _fpsVar = 5; 
+                    break;
+                case 5:
+                    _fps = 30; _resScale = 80; _latency = 5; _fpsVar = 15; 
+                    break;
+                case 6:
+                    _fps = 30; _resScale = 80; _latency = 15; _fpsVar = 0; 
+                    break;
+                case 7:
+                    _fps = 30; _resScale = 80; _latency = 15; _fpsVar = 5; 
+                    break;
+                case 8:
+                    _fps = 30; _resScale = 80; _latency = 15; _fpsVar = 15; 
+                    break;
+                case 9:
+                    _fps = 60; _resScale = 80; _latency = 0; _fpsVar = 0; 
+                    break;
+                case 10:
+                    _fps = 60; _resScale = 80; _latency = 0; _fpsVar = 5; 
+                    break;
+                case 11:
+                    _fps = 60; _resScale = 80; _latency = 0; _fpsVar = 15; 
+                    break;
+                case 12:
+                    _fps = 60; _resScale = 80; _latency = 5; _fpsVar = 0; 
+                    break;
+                case 13:
+                    _fps = 60; _resScale = 80; _latency = 5; _fpsVar = 5; 
+                    break;
+                case 14:
+                    _fps = 60; _resScale = 80; _latency = 5; _fpsVar = 15; 
+                    break;
+                case 15:
+                    _fps = 60; _resScale = 80; _latency = 15; _fpsVar = 0; 
+                    break;
+                case 16:
+                    _fps = 60; _resScale = 80; _latency = 15; _fpsVar = 5; 
+                    break;
+                case 17:
+                    _fps = 60; _resScale = 80; _latency = 15; _fpsVar = 15; 
+                    break;
+                case 18:
+                    _fps = 60; _resScale = 40; _latency = 0; _fpsVar = 0; 
+                    break;
+                case 19:
+                    _fps = 60; _resScale = 120; _latency = 0; _fpsVar = 0; 
+                    break;
                 default:
                     SetDefault();
                     break;

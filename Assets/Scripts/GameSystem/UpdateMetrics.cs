@@ -34,7 +34,7 @@ namespace BoatAttack
         {
             List<int> list = new List<int>();
 
-            for (int i = 0; i < 17; i++)
+            for (int i = 0; i < 20; i++)
             {
                 list.Add(i);
             }

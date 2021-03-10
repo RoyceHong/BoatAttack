@@ -236,8 +236,7 @@ namespace BoatAttack
         
         private void FixedUpdate()
         {
-            int randFPS = (int)UpdateMetrics.GaussRandom(UpdateMetrics.getFPS(), UpdateMetrics.getFPSVar());
-            Application.targetFrameRate = Math.Max(1, Math.Min(60, randFPS));
+            Application.targetFrameRate = UpdateMetrics.randFPS();
         }
 
         private void LateUpdate()

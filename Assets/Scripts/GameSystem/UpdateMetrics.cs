@@ -43,22 +43,23 @@ namespace BoatAttack
             return list;
         }
 
-        public static float GaussRandom(float mu, float sigma)
+        public static int randFPS()
         {
-            float u, v, S;
-            float min = mu - (3.0f * sigma);
-            float max = mu + (3.0f * sigma);
-
-            do
-            {
-                u = 2.0f * UnityEngine.Random.value - 1.0f;
-                v = 2.0f * UnityEngine.Random.value - 1.0f;
-                S = u * u + v * v;
-            } while(S >= 1.0f);
-
-            float std = u * Mathf.Sqrt(-2.0f * Mathf.Log(S));
-
-            return Mathf.Clamp(std * sigma + mu, min, max);
+            if (Application.targetFrameRate == _fps) {
+                if (rng.Next(0, 20) < 2)
+                {
+                    return _fps - _fpsVar;
+                } else {
+                    return _fps;
+                }
+            } else {
+                if (rng.Next(0,20) < 19)
+                {
+                    return _fps - _fpsVar;
+                } else {
+                    return _fps;
+                }
+            }
         }
 
         private static int _fps = 30;

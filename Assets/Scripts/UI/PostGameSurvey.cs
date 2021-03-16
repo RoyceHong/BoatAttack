@@ -157,14 +157,15 @@ namespace BoatAttack.UI
             int latency = UpdateMetrics.getLatency();
             int fps_var = UpdateMetrics.getFPSVar();
             int lap = UpdateMetrics.getLapID();
+            int surveyCode = UpdateMetrics.getSurveyCode();
 
-            String postData = "{\"surveyData\": " + surveyData + ", \"parameters\": {" + string.Format("\"lapNumber\": {4}, \"fps\": {0}, \"resolutionMultiple\": {1}, \"q_len\": {2}, \"fps_var\": {3}", fps, resScale, latency, fps_var, lap) + "},";
+            String postData = "{\"surveyData\": " + surveyData + ", \"parameters\": {" + string.Format("\"surveyCode\": {5}, \"lapNumber\": {4}, \"fps\": {0}, \"resolutionMultiple\": {1}, \"q_len\": {2}, \"fps_var\": {3}", fps, resScale, latency, fps_var, lap, surveyCode) + "},";
             postData += "\"systemInfo\": {" + string.Format("\"deviceType\": \"{0}\", \"deviceModel\": \"{1}\", \"deviceUniqueIdentifier\": \"{2}\", \"operatingSystem\": \"{3}\", \"processorType\": \"{4}\"", ("" + SystemInfo.deviceType).Replace("\"", "\\\""), ("" + SystemInfo.deviceModel).Replace("\"", "\\\""), ("" + SystemInfo.deviceUniqueIdentifier).Replace("\"", "\\\""), ("" + SystemInfo.operatingSystem).Replace("\"", "\\\""), ("" + SystemInfo.processorType).Replace("\"", "\\\"")) + "}, \"uuid\": \"" + sessionUuid + "\"}";
             Debug.Log(postData);
             if (surveyData.Length > 0)
             {
                 UnityWebRequest www = UnityWebRequest.Put("https://seniordesign-295702.uc.r.appspot.com/boatGameResults", postData);
-                //UnityWebRequest www = UnityWebRequest.Put("http://localhost:5000/boatGameResults", postData);
+                // UnityWebRequest www = UnityWebRequest.Put("http://localhost:5000/boatGameResults", postData);
                 www.SetRequestHeader("Accept", "application/json");
                 www.SetRequestHeader("Content-Type", "application/json");
                 www.SetRequestHeader("Access-Control-Allow-Origin", "*");
@@ -177,7 +178,11 @@ namespace BoatAttack.UI
             
             GameObject root = transform.root.gameObject;
             RaceUI raceui = (RaceUI)root.GetComponent(typeof(RaceUI));
-            raceui.FinishMatch();
+            if (UpdateMetrics.isQueueEmpty()) {
+                raceui.FinalStart();
+            } else {
+                raceui.FinishMatch();
+            }
         }
 
         // Update is called once per frame

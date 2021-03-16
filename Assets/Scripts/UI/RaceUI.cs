@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace BoatAttack.UI
 {
@@ -23,6 +24,7 @@ namespace BoatAttack.UI
         public GameObject raceStat;
         public GameObject matchEnd;
         public GameObject survey;
+        public GameObject final;
 
         [Header("Assets")]
         public AssetReference playerMarker;
@@ -47,6 +49,7 @@ namespace BoatAttack.UI
         public void Setup(int player)
         {
             survey.SetActive(false);
+            final.SetActive(false);
             _playerIndex = player;
             _boat = RaceManager.RaceData.boats[_playerIndex].Boat;
             _totalLaps = RaceManager.GetLapCount();
@@ -105,6 +108,18 @@ namespace BoatAttack.UI
             matchEnd.SetActive(false);
             SetGameStats(false);
             //postGameSurvey.show();
+        }
+
+        public void FinalStart()
+        {
+            final.SetActive(true);
+            survey.SetActive(false);
+            GameObject.Find("SurveyCodeText").GetComponentInChildren<Text>().text = UpdateMetrics.getSurveyCode().ToString();
+        }
+
+        public void openGoogleForm()
+        {
+            Application.OpenURL("https://docs.google.com/forms/d/e/1FAIpQLSeTre8hCE0s2DX9w2965NhZXndE-WUUCjoFu0rFvh-SIR05ug/viewform?usp=sf_link");
         }
 
         private IEnumerator CreateGameStats()

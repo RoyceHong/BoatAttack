@@ -15,6 +15,7 @@ namespace BoatAttack
     public static class UpdateMetrics
     {
         private static Queue<int> queue;
+        private static int surveyCode;
         private static Random rng = new Random();
 
         private static void Shuffle<T>(this IList<T> list)
@@ -71,6 +72,7 @@ namespace BoatAttack
         public static void Init()
         {
             queue = new Queue<int>(initQueue());
+            surveyCode = rng.Next();
             QualitySettings.vSyncCount = 0;
             SetDefault();
             Update();
@@ -200,6 +202,14 @@ namespace BoatAttack
         public static int getFPSVar()
         {
             return _fpsVar;
+        }
+        public static int getSurveyCode()
+        {
+            return surveyCode;
+        }
+        public static bool isQueueEmpty()
+        {
+            return queue.Count == 0;
         }
     }
 }

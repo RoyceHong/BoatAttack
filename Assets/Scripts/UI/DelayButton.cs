@@ -11,12 +11,19 @@ public class DelayButton : MonoBehaviour
         survey_button = GameObject.Find("Survey_Button");
         survey_button.SetActive(false);
         Invoke("Delay", 15);
-        
+        //StartCoroutine(WaitToDisplay(5.0f));
+
     }
 
     public void Delay()
     {
         Debug.Log("Activate Survey Button : " + Time.time);
+        survey_button.SetActive(true);
+    }
+
+    IEnumerator WaitToDisplay(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
         survey_button.SetActive(true);
     }
 }

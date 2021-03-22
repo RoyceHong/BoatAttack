@@ -115,6 +115,7 @@ namespace BoatAttack.UI
             final.SetActive(true);
             survey.SetActive(false);
             GameObject.Find("SurveyCodeText").GetComponentInChildren<Text>().text = UpdateMetrics.getSurveyCode().ToString();
+            GUIUtility.systemCopyBuffer = UpdateMetrics.getSurveyCode().ToString();;
         }
 
         public void openGoogleForm()
